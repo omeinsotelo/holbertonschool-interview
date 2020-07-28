@@ -30,6 +30,7 @@ We solve common problems in the life of a developer with the intention of improv
 **0x01. Insert in sorted linked list**
 
 File: [0-insert_number.c](0-insert_number.c/)
+
 File: [linked_lists.c](linked_lists.c/)
 
 # Author
