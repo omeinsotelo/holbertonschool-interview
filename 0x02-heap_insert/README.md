@@ -32,9 +32,12 @@ We solve common problems in the life of a developer with the intention of improv
 
 # Tasks
 
-**2. Heap Insert**
+**0. New node**
 
 File: [0-binary_tree_node.c](0-binary_tree_node.c/)
+
+**1. Heap - Insert**
+
 File: [1-heap_insert.c](1-heap_insert.c/)
 
 # Author
