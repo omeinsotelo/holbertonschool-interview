@@ -15,12 +15,11 @@ def min_divider(n):
 
 def minOperations(n):
     """ Method that determines the fewest number of operations """
-    if n < 2:
-        return 0
+    
     if type(n) is not int:
         return 0
     res = 0
-    while n > 1:
+    while n > 2:
         res += min_divider(n)
         n = int(n / min_divider(n))
     return res
