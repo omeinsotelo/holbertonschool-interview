@@ -15,8 +15,6 @@ def min_divider(n):
 
 def minOperations(n):
     """ Method that determines the fewest number of operations """
-    if n < 2:
-        return 0
     if not isinstance(n, int):
         return 0
     res = 0
