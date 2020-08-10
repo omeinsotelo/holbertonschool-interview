@@ -4,21 +4,13 @@
 """
 
 
-def min_divider(n):
-    """ Method that determines the min divider of n int """
-    div = []
-    for i in range(1, n+1):
-        if n % i == 0:
-            div.append(i)
-    return div[1]
-
-
 def minOperations(n):
     """ Method that determines the fewest number of operations """
-    if not isinstance(n, int):
-        return 0
     res = 0
-    while n > 1:
-        res += min_divider(n)
-        n = int(n / min_divider(n))
+    while isinstance(n, int) and n > 1:
+        for div in range(2, n + 1):
+            if not n % div:
+                break
+        res += div
+        n = int(n / div)
     return res
