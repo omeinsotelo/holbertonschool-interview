@@ -6,36 +6,36 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *currentS = NULL;
-	listint_t *currentF = NULL;
+	listint_t *currentI = NULL;
+	listint_t *currentJ = NULL;
 
 	if (head == NULL || *head == NULL)
 		return (1);
 
-	currentS = *head;
-	currentF = *head;
+	currentI = *head;
+	currentJ = *head;
 
-	if (is_palindrome_rec(currentS, currentF) == NULL)
+	if (is_palindrome_rec(currentI, currentJ) == NULL)
 		return (0);
 	return (1);
 }
 /**
  * is_palindrome_rec - check is a palindrome recursion
- * @currentS: pointer to refer the head, the start
- * @currentF: pointer to move from end to start
+ * @currentI: pointer to refer the head, the start
+ * @currentJ: pointer to move from end to start
  * Return: pointer: palindrome, NULL: not palindrome
  */
-listint_t *is_palindrome_rec(listint_t *currentS, listint_t *currentF)
+listint_t *is_palindrome_rec(listint_t *currentI, listint_t *currentJ)
 {
 	listint_t *res = NULL;
 
-	if (currentF != NULL)
+	if (currentJ != NULL)
 	{
-		res = is_palindrome_rec(currentS, currentF->next);
+		res = is_palindrome_rec(currentI, currentJ->next);
 		if (res == NULL)
 			return (NULL);
 
-		if (res->n != currentF->n)
+		if (res->n != currentJ->n)
 			return (NULL);
 
 		if (res->next == NULL)
@@ -44,5 +44,5 @@ listint_t *is_palindrome_rec(listint_t *currentS, listint_t *currentF)
 		return (res->next);
 	}
 
-	return (currentS);
+	return (currentI);
 }
