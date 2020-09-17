@@ -8,20 +8,23 @@
  */
 int is_palindrome(unsigned long n)
 {
-    unsigned long tmp = n;
-    unsigned long reverse = 0;
-    unsigned long rem = 0;
+	int cont1 = 0;
+    int cont2 = 0;
+	unsigned long array[1024];
+	unsigned long newNum = n;
 
-    while (tmp != 0)
-    {
-        rem = tmp % 10;
-        reverse = reverse * 10 + rem;
-        tmp = tmp / 10;
-    }
-    if (n == reverse)
-        return 1;
-    return 0;
-}
+	while (newNum != 0)
+	{
+		array[cont1++] = newNum % 10;
+		newNum = newNum / 10;
+	}
+
+	cont1--;
+	for ( ; cont1 > cont2; cont1--, cont2++)
+	{
+		if (array[cont1] != array[cont2])
+			return (0);
+	}
 
 	return (1);
 }
