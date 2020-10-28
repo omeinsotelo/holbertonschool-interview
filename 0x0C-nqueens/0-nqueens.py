@@ -1,250 +1,43 @@
 #!/usr/bin/python3
-"""
-N queens
-"""
-import sys
-
-
-def diagonals(results, N):
-    """
-    list with diagonals
-    """
-    # fill diagonals
-    diagonals = []
-    for i in results:
-        # up-left
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row -= 1
-            it_col -= 1
-
-        # up-right
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row -= 1
-            it_col += 1
-
-        # up-right
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row += 1
-            it_col -= 1
-
-        # down-right
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row += 1
-            it_col += 1
-
-    return diagonals
-
-
-def isSafe(row, col, results, N):
-    """
-    know if safe a position
-    """
-    # validate columns
-    for _row in range(N):
-        if [_row, col] in results:
-            return False
-
-    return not [row, col] in diagonals(results, N)
-
-
-def chess(N):
-    """
-    iterate the positions
-    """
-    result = []
-    row = 0
-    col = 0
-
-    while row < N:
-        while col < N:
-            if isSafe(row, col, result, N):
-                result.append([row, col])
-                break
-            col += 1
-
-        # if a new position not exists in results
-        if len(result) != (row + 1):
-            row -= 1
-            if row < 0:
-                break
-            col = result[row][1] + 1
-            del result[row]
-            continue
-        elif len(result) == N:
-            print(result)
-            col += 1
-            del result[row]
-            continue
-        row += 1
-        col = 0
-
-
-def start():
-    """
-    N queens
-    """
-    args = sys.argv
-
-    # Usage error
-    if len(args) is not 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-
-    # type value error
-    try:
-        int(args[1])
-    except:
-        print("N must be a number")
-        sys.exit(1)
-
-    # less than 4 error
-    if int(args[1]) < 4:
-        print("N must be at least 4")
-        sys.exit(1)
-
-    N = int(args[1])
-    chess(N)
+'''
+Module that solves the N Queens puzzle
+'''
+from sys import argv, exit
 
 if __name__ == "__main__":
-    start()
-#!/usr/bin/python3
-"""
-N queens
-"""
-import sys
-
-
-def diagonals(results, N):
-    """
-    list with diagonals
-    """
-    # fill diagonals
-    diagonals = []
-    for i in results:
-        # up-left
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row -= 1
-            it_col -= 1
-
-        # up-right
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row -= 1
-            it_col += 1
-
-        # up-right
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row += 1
-            it_col -= 1
-
-        # down-right
-        it_row = i[0]
-        it_col = i[1]
-        while it_col >= 0 and it_col < N and it_row >= 0 and it_row < N:
-            if [it_row, it_col] not in diagonals:
-                diagonals.append([it_row, it_col])
-            it_row += 1
-            it_col += 1
-
-    return diagonals
-
-
-def isSafe(row, col, results, N):
-    """
-    know if safe a position
-    """
-    # validate columns
-    for _row in range(N):
-        if [_row, col] in results:
-            return False
-
-    return not [row, col] in diagonals(results, N)
-
-
-def chess(N):
-    """
-    iterate the positions
-    """
-    result = []
-    row = 0
-    col = 0
-
-    while row < N:
-        while col < N:
-            if isSafe(row, col, result, N):
-                result.append([row, col])
-                break
-            col += 1
-
-        # if a new position not exists in results
-        if len(result) != (row + 1):
-            row -= 1
-            if row < 0:
-                break
-            col = result[row][1] + 1
-            del result[row]
-            continue
-        elif len(result) == N:
-            print(result)
-            col += 1
-            del result[row]
-            continue
-        row += 1
-        col = 0
-
-
-def start():
-    """
-    N queens
-    """
-    args = sys.argv
-
-    # Usage error
-    if len(args) is not 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-
-    # type value error
+    if len(argv) != 2:
+        print('Usage: nqueens N')
+        exit(1)
     try:
-        int(args[1])
-    except:
-        print("N must be a number")
-        sys.exit(1)
+        n = int(argv[1])
+    except BaseException:
+        print('N must be a number')
+        exit(1)
+    if n < 4:
+        print('N must be at least 4')
+        exit(1)
 
-    # less than 4 error
-    if int(args[1]) < 4:
-        print("N must be at least 4")
-        sys.exit(1)
+    solution = []
 
-    N = int(args[1])
-    chess(N)
+    def solve_queens(row, n, solution):
+        if (row == n):
+            print(solution)
+        else:
+            for col in range(n):
+                placement = [row, col]
+                if valid_placement(solution, placement):
+                    solution.append(placement)
+                    solve_queens(row + 1, n, solution)
+                    solution.remove(placement)
 
-if __name__ == "__main__":
-    start()
+    def valid_placement(solution, placement):
+        for queen in solution:
+            if queen[1] == placement[1]:
+                return False
+            if (queen[0] + queen[1]) == (placement[0] + placement[1]):
+                return False
+            if (queen[0] - queen[1]) == (placement[0] - placement[1]):
+                return False
+        return True
+
+    solve_queens(0, n, solution)
